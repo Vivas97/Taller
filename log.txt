@@ -1,0 +1,170 @@
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller (master)
+$ git init taller
+Initialized empty Git repository in C:/Users/VIVAS/taller/taller/.git/
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller (master)
+$ cd taller
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git config --global user.name "hernando"
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git config --global user.email "viivas9}@gmail.com"
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git checkout -b feature
+Switched to a new branch 'feature'
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ echo "Texto inicial" > archivo.txt
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ git add archivo.txt
+warning: in the working copy of 'archivo.txt', LF will be replaced by CRLF the next time Git touches it
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ git commit -m "primer commit"
+[feature (root-commit) 36f689c] primer commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 archivo.txt
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ echo "Texto agregado en feature" >> archivo.txt
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ git commit -am "segundo commit en feature"
+warning: in the working copy of 'archivo.txt', LF will be replaced by CRLF the next time Git touches it
+[feature 1ba1eac] segundo commit en feature
+ 1 file changed, 1 insertion(+)
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ git checkout -b master
+Switched to a new branch 'master'
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git merge feature
+Already up to date.
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git reset --hard HEAD~1
+HEAD is now at 36f689c primer commit
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git rebase feature
+Successfully rebased and updated refs/heads/master.
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git checkout -b hotfix
+Switched to a new branch 'hotfix'
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (hotfix)
+$ echo "correccion urgente" >> archivo.txt
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (hotfix)
+$ git commit -am "hotfix"
+warning: in the working copy of 'archivo.txt', LF will be replaced by CRLF the next time Git touches it
+[hotfix b634b16] hotfix
+ 1 file changed, 1 insertion(+)
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (hotfix)
+$ git checkout master
+Switched to branch 'master'
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git cherry-pick hotfix
+[master 38230c1] hotfix
+ Date: Mon Oct 7 10:21:13 2024 -0500
+ 1 file changed, 1 insertion(+)
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git checkout feature
+Switched to branch 'feature'
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ echo "cambio en feature" > comflicto.txt
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ git commit -am "cambio en feature"
+On branch feature
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        comflicto.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ git add conflicto.txt
+fatal: pathspec 'conflicto.txt' did not match any files
+
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ git add comflicto.txt
+warning: in the working copy of 'comflicto.txt', LF will be replaced by CRLF the next time Git touches it
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ git commit -am "cambio en feature"
+[feature e793e6c] cambio en feature
+ 1 file changed, 1 insertion(+)
+ create mode 100644 comflicto.txt
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (feature)
+$ git checkout master
+Switched to branch 'master'
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ echo "cambio en master" > comflicto.txt
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git commit -am "cambio en master"
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        comflicto.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git add comflicto.txt
+warning: in the working copy of 'comflicto.txt', LF will be replaced by CRLF the next time Git touches it
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git commit -am "cambio en master"
+[master fb8b515] cambio en master
+ 1 file changed, 1 insertion(+)
+ create mode 100644 comflicto.txt
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$ git merge feature
+Auto-merging comflicto.txt
+CONFLICT (add/add): Merge conflict in comflicto.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master|MERGING)
+$ ^C
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master|MERGING)
+$ git reflog
+fb8b515 (HEAD -> master) HEAD@{0}: commit: cambio en master
+38230c1 HEAD@{1}: checkout: moving from feature to master
+e793e6c (feature) HEAD@{2}: commit: cambio en feature
+1ba1eac HEAD@{3}: checkout: moving from master to feature
+38230c1 HEAD@{4}: cherry-pick: hotfix
+1ba1eac HEAD@{5}: checkout: moving from hotfix to master
+b634b16 (hotfix) HEAD@{6}: commit: hotfix
+1ba1eac HEAD@{7}: checkout: moving from master to hotfix
+1ba1eac HEAD@{8}: rebase (finish): returning to refs/heads/master
+1ba1eac HEAD@{9}: rebase (start): checkout feature
+36f689c HEAD@{10}: reset: moving to HEAD~1
+1ba1eac HEAD@{11}: checkout: moving from feature to master
+1ba1eac HEAD@{12}: commit: segundo commit en feature
+36f689c HEAD@{13}: commit (initial): primer commit
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master|MERGING)
+$ git add comflicto.txt
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master|MERGING)
+$ git commit -m "Resuelto el conflicto en comflicto.txt"
+[master ffdd6a7] Resuelto el conflicto en comflicto.txt
+
+VIVAS@DESKTOP-4D586MD MINGW64 ~/taller/taller (master)
+$
