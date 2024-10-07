@@ -12,4 +12,4 @@ Se hicieron los pasos como se especifica en el taller.
 
 Esto genera un conflicto al intentar fusionar las dos ramas, ya que ambas contienen cambios distintos en un archivo con el mismo nombre.
 
-Se produjo un conflicto en el archivo comflicto.txt (indicado por el mensaje Merge conflict in comflicto.txt). fue necesario resolver manualmente el conflicto y realizar un commit para completar la fusión.
+Se produjo un conflicto en el archivo comflicto.txt (indicado por el mensaje Merge conflict in comflicto.txt). fue necesario resolver manualmente el conflicto modificando el txt y realizar un commit para completar la fusión.
